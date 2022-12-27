@@ -2,6 +2,7 @@ import express from 'express'
 import colors from 'colors'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
+import userRoutes from './routes/userRoute.js'
 
 dotenv.config()
 const PORT = process.env.PORT || 5000
@@ -19,4 +20,5 @@ const connectDB = async () => {
 }
 
   connectDB()
+  app.use('/api/users', userRoutes)
   app.listen(PORT, () => console.info(`Server running on port ${PORT}`.bgCyan.underline.bold))
