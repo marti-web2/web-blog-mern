@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 import authRoute from './routes/auth.js'
 import userRoute from './routes/users.js'
 import postRoute from './routes/posts.js'
+import CategoryRoute from './routes/categories.js'
 
 dotenv.config()
 const app = express()
@@ -19,6 +20,7 @@ mongoose.connect(MONGO_URL, {
 app.use("/api/auth", authRoute)
 app.use("/api/users", userRoute)
 app.use("/api/posts", postRoute)
+app.use("/api/categories", CategoryRoute)
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`)
