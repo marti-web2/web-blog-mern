@@ -2,8 +2,8 @@ import express from 'express'
 import User from '../models/User.js'
 import bcrypt from 'bcrypt'
 
-const router = express.Router()
-router.post("/register", async (req, res) => {
+const authRouter = express.Router()
+authRouter.post("/register", async (req, res) => {
   try {
     const salt = await bcrypt.genSalt(12)
     const hashedPass = await bcrypt.hash(req.body.password, salt)
@@ -21,7 +21,7 @@ router.post("/register", async (req, res) => {
 })
 
 // Login
-router.post("/login", async (req, res) => {
+authRouter.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ username: req.body.username })
     if(!user) return res.status(404).json("User not found")
@@ -34,4 +34,4 @@ router.post("/login", async (req, res) => {
   }
 })
 
-export default router
+export default authRouter
