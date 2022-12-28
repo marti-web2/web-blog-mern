@@ -1,0 +1,7 @@
+.posts{
+  /* Split into 12: 9 are posts, 3 are sidebar */
+  flex: 9;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px;
+}

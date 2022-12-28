@@ -6,6 +6,7 @@
   top: 0;
   align-items: center;
   font-family: 'Josefin Sans', sans-serif;
+  z-index: 999;
 }
 
 .topLeft, .topRight {
