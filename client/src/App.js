@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, Fragment } from "react"
 import Topbar from "./components/topbar/Topbar"
 import Home from "./pages/home/Home"
 import Single from "./pages/single/Single"
@@ -9,10 +9,10 @@ import Register from "./pages/register/Register"
 const App = () => {
 
   return (
-    <>
+    <Fragment>
       <Topbar />
-     <Register />
-    </>
+      <Register />
+    </Fragment>
   );
 };
 
