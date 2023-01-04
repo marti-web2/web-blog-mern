@@ -1,11 +1,10 @@
 import React from "react"
-import ReactDOM from "react-dom"
-import { ContextProvider } from "./context/Context"
+import { createRoot } from "react-dom/client"
 import App from "./App"
+import { ContextProvider } from "./context/Context"
 
-ReactDOM.render(
-<ContextProvider>
-<App />
-</ContextProvider>,
-document.getElementById("root")
+createRoot(document.getElementById("root")).render(
+  <ContextProvider>
+    <App />
+  </ContextProvider>,
 )
