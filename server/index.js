@@ -4,40 +4,43 @@ import mongoose from 'mongoose'
 import authRoute from './routes/auth.js'
 import userRoute from './routes/users.js'
 import postRoute from './routes/posts.js'
-import CategoryRoute from './routes/categories.js'
+import categoryRoute from './routes/categories.js'
 import multer from 'multer'
+import path from 'path'
 
 dotenv.config()
 const app = express()
-app.use(express.json())
-const PORT = process.env.PORT || 5000
-const MONGO_URL = process.env.MONGO_URL
+const PORT = process.env.PORT || PORT
+app.use(express.json());
+app.use("/images", express.static(path.join(__dirname, "/images")));
 
-mongoose.connect(MONGO_URL, {
+mongoose.connect(process.env.MONGO_URL, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(console.log('MongoDB connected'))
-.catch(err => console.log(err))
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: true,
+}).then(() => console.log("Connected to MongoDB"))
+  .catch((err) => console.log(err));
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "images")
+    cb(null, "images");
   },
   filename: (req, file, cb) => {
-    cb(null, req.body.name)
-  }
-})
+    cb(null, req.body.name);
+  },
+});
 
-const upload = multer({ storage: storage })
+const upload = multer({ storage });
 app.post("/api/upload", upload.single("file"), (req, res) => {
-  res.status(200).json("File has been uploaded")
-})
+  res.status(200).json({ message: "File has been uploaded" });
+});
 
-app.use("/api/auth", authRoute)
-app.use("/api/users", userRoute)
-app.use("/api/posts", postRoute)
-app.use("/api/categories", CategoryRoute)
+app.use("/api/auth", authRoute);
+app.use("/api/users", userRoute);
+app.use("/api/posts", postRoute);
+app.use("/api/categories", categoryRoute);
 
 app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`)
-})
+  console.log(`Server is running on port ${PORT}.`);
+});
