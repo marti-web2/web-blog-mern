@@ -1,87 +1,57 @@
-import React from "react"
+import { useContext } from "react"
 import { Link } from "react-router-dom"
+import { Context } from "../../context/Context"
 import "./topbar.css"
 
-const icons = [
-  {
-    className: "fab fa-facebook-square",
-    link: "https://www.facebook.com",
-  },
-  {
-    className: "fab fa-instagram-square",
-    link: "https://www.instagram.com",
-  },
-  {
-    className: "fab fa-pinterest-square",
-    link: "https://www.pinterest.com",
-  },
-  {
-    className: "fab fa-twitter-square",
-    link: "https://www.twitter.com",
-  },
-]
+const TopBar = () => {
+  const { user, dispatch } = useContext(Context)
+  const PF = "http://localhost:5000/images/"
 
-const links = [
-  {
-    name: "HOME",
-    link: "/",
-  },
-  {
-    name: "ABOUT",
-    link: "/about",
-  },
-  {
-    name: "CONTACT",
-    link: "/contact",
-  },
-  {
-    name: "WRITE",
-    link: "/write",
-  },
-]
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" })
+  }
 
-export default function TopBar({ user }) {
   return (
     <div className="top">
       <div className="topLeft">
-        {icons.map(({ className, link }) => (
-          <a
-            key={className}
-            className="topIcon"
-            href={link}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <i className={className}></i>
-          </a>
-        ))}
+        <i className="topIcon fab fa-facebook-square"></i>
+        <i className="topIcon fab fa-twitter-square"></i>
+        <i className="topIcon fab fa-pinterest-square"></i>
+        <i className="topIcon fab fa-instagram-square"></i>
       </div>
       <div className="topCenter">
         <ul className="topList">
-          {links.map(({ name, link }) => (
-            <li key={name} className="topListItem">
-              <Link className="link" to={link}>
-                {name}
-              </Link>
-            </li>
-          ))}
+          <li className="topListItem">
+            <Link className="link" to="/">
+              HOME
+            </Link>
+          </li>
+          <li className="topListItem">
+            <Link className="link" to="/">
+              ABOUT
+            </Link>
+          </li>
+          <li className="topListItem">
+            <Link className="link" to="/">
+              CONTACT
+            </Link>
+          </li>
+          <li className="topListItem">
+            <Link className="link" to="/write">
+              WRITE
+            </Link>
+          </li>
           {user && (
-            <li className="topListItem">
-              <Link className="link" to="/logout">
-                LOGOUT
-              </Link>
+            <li className="topListItem" onClick={handleLogout}>
+              LOGOUT
             </li>
           )}
         </ul>
       </div>
       <div className="topRight">
         {user ? (
-          <Link className="link" to="/settings">
-            <img
-              className="topImg"
-              src="https://images.pexels.com/photos/1858175/pexels-photo-1858175.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
-              alt=""
-            />
+          <Link to="/settings">
+            <img className="topImg" src={PF + user.profilePic} alt="" />
           </Link>
         ) : (
           <ul className="topList">
@@ -102,3 +72,5 @@ export default function TopBar({ user }) {
     </div>
   )
 }
+
+export default TopBar
