@@ -48,10 +48,11 @@ export default function SinglePost() {
 
   return (
     <div className="singlePost">
-      <div className="singlePostWrapper">
-        {post.photo && (
-          <img src={PF + post.photo} alt="" className="singlePostImg" />
-        )}
+    <div className="singlePostWrapper">
+      {post.photo && (
+        <img src={PF + post.photo} alt="" className="singlePostImg" />
+      )}
+      <h1 className="singlePostTitle">
         {updateMode ? (
           <input
             type="text"
@@ -61,28 +62,27 @@ export default function SinglePost() {
             onChange={(e) => setTitle(e.target.value)}
           />
         ) : (
-          <h1 className="singlePostTitle">
-            {title}
-            {post.username === user?.username && (
-              <div className="singlePostEdit">
-                <i
-                  className="singlePostIcon far fa-edit"
-                  onClick={() => setUpdateMode(true)}
-                ></i>
-                <i
-                  className="singlePostIcon far fa-trash-alt"
-                  onClick={handleDelete}
-                ></i>
-              </div>
-            )}
-          </h1>
+          title
         )}
-        <div className="singlePostInfo">
-          <span className="singlePostAuthor">
-            Author:
-            <Link to={`/?user=${post.username}`} className="link">
-              <b> {post.username}</b>
-            </Link>
+        {post.username === user?.username && (
+          <div className="singlePostEdit">
+            <i
+              className="singlePostIcon far fa-edit"
+              onClick={() => setUpdateMode(true)}
+            ></i>
+            <i
+              className="singlePostIcon far fa-trash-alt"
+              onClick={handleDelete}
+            ></i>
+          </div>
+        )}
+      </h1>
+      <div className="singlePostInfo">
+        <span className="singlePostAuthor">
+          Author:
+          <Link to={`/?user=${post.username}`} className="link">
+            <b> {post.username}</b>
+          </Link>
           </span>
           <span className="singlePostDate">
             {new Date(post.createdAt).toDateString()}
