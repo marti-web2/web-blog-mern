@@ -1,25 +1,40 @@
 import React from "react"
+import axios from "axios"
+import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import "./sidebar.css"
 
-function Sidebar() {
+export default function Sidebar() {
+  const [cats, setCats] = useState([])
+
+  useEffect(() => {
+    const getCats = async () => {
+      const res = await axios.get("/categories")
+      setCats(res.data)
+    }
+    getCats()
+  }, [])
   return (
     <div className="sidebar">
       <div className="sidebarItem">
         <span className="sidebarTitle">ABOUT ME</span>
         <img
-          src="https://images.unsplash.com/photo-1517841900229-3c2b45a95b82?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YmFja2dyb3VuZHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80"
+          src="https://i.pinimg.com/236x/1e/3f/58/1e3f587572a7a7b20bbf1828595a1786--holiday-party-themes-holiday-gift-guide.jpg"
           alt=""
         />
         <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Distinctio rerum consequuntur accusantium dolore!
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate qui
+          necessitatibus nostrum illum reprehenderit.
         </p>
       </div>
       <div className="sidebarItem">
         <span className="sidebarTitle">CATEGORIES</span>
         <ul className="sidebarList">
-          <li className="sidebarListItem">Music</li>
-          <li className="sidebarListItem">Art</li>
-          <li className="sidebarListItem">Tech</li>
+          {cats.map((c) => (
+            <Link to={`/?cat=${c.name}`} className="link">
+            <li className="sidebarListItem">{c.name}</li>
+            </Link>
+          ))}
         </ul>
       </div>
       <div className="sidebarItem">
@@ -34,5 +49,3 @@ function Sidebar() {
     </div>
   )
 }
-
-export default Sidebar
