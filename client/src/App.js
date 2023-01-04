@@ -8,9 +8,11 @@ import Register from "./pages/register/Register"
 import Login from "./pages/login/Login"
 import About from "./pages/about/About"
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom"
+import { Context } from "./context/Context"
+import { useContext } from "react"
 
 const App = () => {
-  const user = false
+  const {user} = useContext(Context)
 
   return (
       <Router>
