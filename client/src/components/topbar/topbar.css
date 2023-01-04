@@ -6,59 +6,54 @@
   top: 0;
   display: flex;
   align-items: center;
-  z-index: 999;
   font-family: "Josefin Sans", sans-serif;
-}
-
-.topLeft,
-.topRight {
-  flex: 3;
+  z-index: 999;
+  }
+  
+  .top-section {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.topIcon {
+  flex: 3;
+  }
+  
+  .top-center {
+  flex: 6;
+  }
+  
+  .top-icon {
   font-size: 20px;
   margin-right: 10px;
   color: #444;
   cursor: pointer;
-}
-
-.topCenter {
-  flex: 6;
-}
-
-.topList {
+  }
+  
+  .top-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  }
+  
+  .top-list {
   display: flex;
   justify-content: center;
   margin: 0;
   padding: 0;
   list-style: none;
-}
-
-.topListItem {
+  }
+  
+  .top-list-item {
   margin-right: 20px;
   font-size: 18px;
   font-weight: 300;
   cursor: pointer;
-}
-
-.topListItem:hover{
-    color: gray;
-}
-
-.topImg {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-right: 15px;
-  cursor: pointer;
-}
-
-.topSearchIcon {
+  }
+  
+  .top-search-icon {
   font-size: 18px;
   color: #666;
   cursor: pointer;
-}
+  margin-left: 15px;
+  }

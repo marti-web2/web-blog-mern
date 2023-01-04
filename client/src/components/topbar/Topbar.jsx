@@ -1,36 +1,77 @@
 import React from "react"
-import { Link } from "react-router-dom";
-import "./topbar.css";
+import { Link } from "react-router-dom"
+import "./topbar.css"
 
-export default function Topbar() {
-  const user = true;
+const icons = [
+  {
+    className: "fab fa-facebook-square",
+    link: "https://www.facebook.com",
+  },
+  {
+    className: "fab fa-instagram-square",
+    link: "https://www.instagram.com",
+  },
+  {
+    className: "fab fa-pinterest-square",
+    link: "https://www.pinterest.com",
+  },
+  {
+    className: "fab fa-twitter-square",
+    link: "https://www.twitter.com",
+  },
+]
+
+const links = [
+  {
+    name: "HOME",
+    link: "/",
+  },
+  {
+    name: "ABOUT",
+    link: "/about",
+  },
+  {
+    name: "CONTACT",
+    link: "/contact",
+  },
+  {
+    name: "WRITE",
+    link: "/write",
+  },
+]
+
+export default function TopBar({ user }) {
   return (
     <div className="top">
       <div className="topLeft">
-        <i className="topIcon fab fa-facebook-square"></i>
-        <i className="topIcon fab fa-instagram-square"></i>
-        <i className="topIcon fab fa-pinterest-square"></i>
-        <i className="topIcon fab fa-twitter-square"></i>
+        {icons.map(({ className, link }) => (
+          <a
+            key={className}
+            className="topIcon"
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i className={className}></i>
+          </a>
+        ))}
       </div>
       <div className="topCenter">
         <ul className="topList">
-          <li className="topListItem">
-            <Link className="link" to="/">
-              HOME
-            </Link>
-          </li>
-          <li className="topListItem">
-          <Link className="link" to="/about">
-              ABOUT
-            </Link>
-          </li>
-          <li className="topListItem">CONTACT</li>
-          <li className="topListItem">
-            <Link className="link" to="/write">
-              WRITE
-            </Link>
-          </li>
-          {user && <li className="topListItem">LOGOUT</li>}
+          {links.map(({ name, link }) => (
+            <li key={name} className="topListItem">
+              <Link className="link" to={link}>
+                {name}
+              </Link>
+            </li>
+          ))}
+          {user && (
+            <li className="topListItem">
+              <Link className="link" to="/logout">
+                LOGOUT
+              </Link>
+            </li>
+          )}
         </ul>
       </div>
       <div className="topRight">
@@ -59,5 +100,5 @@ export default function Topbar() {
         <i className="topSearchIcon fas fa-search"></i>
       </div>
     </div>
-  );
+  )
 }
