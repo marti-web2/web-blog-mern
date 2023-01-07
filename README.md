@@ -51,8 +51,7 @@
 <p>There are many exciting features that will be added to MERN Blog in the future. These may include new design themes, additional formatting options, and more. Keep an eye on this repository for updates, and feel free to share it with your friends and followers on social media. We hope you continue to enjoy MERN Blog!</p>
 <h2>Contributors</h2>
 <p>MERN Blog is developed and maintained by:</p>
-<ul style="list-style-type:none">
-  <li>@<a href="https://www.linkedin.com/in/david-martinez-a693b165/">MartiMcdee</a> (David Martinez)</li>
-</ul>
+  <blockquote><p>@<a href="https://www.linkedin.com/in/david-martinez-a693b165/">MartiMcdee</a> (David Martinez)
+  </p></blockquote>
   </body>
 </html>
