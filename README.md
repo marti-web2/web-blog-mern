@@ -49,15 +49,16 @@ Here is an overview of the directory structure of the MERN Blog project:
   - `package.json`
   - `README.md`
 - `/server`
-`/models`
-`/routes`
-`.eslintrc.json`
-`.gitignore`
-`package.json`
-`README.md`
-`.gitignore`
-`package.json`
-`README.md`
+  - `/models`
+  - `/routes`
+  - `.eslintrc.json`
+  - `.gitignore`
+  - `package.json`
+  - `README.md`
+- `.gitignore`
+- `package.json`
+- `README.md`
+
 
 ## Technologies Used
 
